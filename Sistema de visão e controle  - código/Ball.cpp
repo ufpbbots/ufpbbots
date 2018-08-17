@@ -20,5 +20,7 @@ void Ball::Refresh_Position(int xa, int ya)
 Ball::~Ball()
 {
  //comentários
+    //comentario 2
+
 }
 
