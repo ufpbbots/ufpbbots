@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\Ball.o
+./debug\Build_Robot.o
+./debug\Configurations.o
+./debug\Robot.o
+./debug\Segmentation.o
+./debug\controlador.o
+./debug\Grouping.o
+./debug\serialcomm.o
+./debug\constantes_robot.o
+./debug\strategy.o
+./debug\qrc_recurso.o
+./debug\moc_mainwindow.o
+./debug\moc_constantes_robot.o
+);

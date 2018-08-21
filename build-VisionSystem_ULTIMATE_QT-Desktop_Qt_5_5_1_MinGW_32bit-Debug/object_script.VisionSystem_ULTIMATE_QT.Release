@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\Ball.o
+./release\Build_Robot.o
+./release\Configurations.o
+./release\Robot.o
+./release\Segmentation.o
+./release\controlador.o
+./release\Grouping.o
+./release\serialcomm.o
+./release\constantes_robot.o
+./release\strategy.o
+./release\qrc_recurso.o
+./release\moc_mainwindow.o
+./release\moc_constantes_robot.o
+);

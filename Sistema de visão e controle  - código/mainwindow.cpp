@@ -29,11 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
     comando_zagueiro = -1;
 
     cap.open(0);
-    set = new Configurations(cap,"C:/Users/mauricio/Desktop/Arquivos Caboclinhos/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Settings.xml");
-    //set = new Configurations(cap,"\Settings.xml");
+    //set = new Configurations(cap,"C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Settings.xml");
+    set = new Configurations(cap,"/Settings.xml");
 
     roi = set->GetCutFramePoints();
-    set->ReadConfigurationsRobots("C:/Users/mauricio/Desktop/Arquivos Caboclinhos/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Constantes.xml");
+    set->ReadConfigurationsRobots("C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Constantes.xml");
     //set->ReadConfigurationsRobots("\Constantes.xml");
     con->setar_constantes(set->rb1,set->zonamorta_rb1,set->rb2,set->zonamorta_rb2,set->rb3,set->zonamorta_rb3);
 
