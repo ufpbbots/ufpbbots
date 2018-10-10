@@ -6,52 +6,52 @@
   <Exposure>-7</Exposure>
   <Contrast>1</Contrast></Camera_Settings>
 <Cut_Frame_Points>
-  <X>69</X>
-  <Y>67</Y>
-  <Width>500</Width>
-  <Height>375</Height></Cut_Frame_Points>
+  <X>84</X>
+  <Y>57</Y>
+  <Width>486</Width>
+  <Height>378</Height></Cut_Frame_Points>
 <Blue>
-  <Red_Max>147</Red_Max>
-  <Red_Min>45</Red_Min>
-  <Green_Max>186</Green_Max>
-  <Green_Min>130</Green_Min>
-  <Blue_Max>167</Blue_Max>
-  <Blue_Min>107</Blue_Min></Blue>
+  <Red_Max>52</Red_Max>
+  <Red_Min>11</Red_Min>
+  <Green_Max>50</Green_Max>
+  <Green_Min>27</Green_Min>
+  <Blue_Max>77</Blue_Max>
+  <Blue_Min>43</Blue_Min></Blue>
 <Yellow>
-  <Red_Max>190</Red_Max>
-  <Red_Min>174</Red_Min>
-  <Green_Max>200</Green_Max>
-  <Green_Min>168</Green_Min>
-  <Blue_Max>149</Blue_Max>
-  <Blue_Min>115</Blue_Min></Yellow>
+  <Red_Max>140</Red_Max>
+  <Red_Min>68</Red_Min>
+  <Green_Max>172</Green_Max>
+  <Green_Min>84</Green_Min>
+  <Blue_Max>64</Blue_Max>
+  <Blue_Min>23</Blue_Min></Yellow>
 <Orange>
-  <Red_Max>241</Red_Max>
-  <Red_Min>157</Red_Min>
-  <Green_Max>166</Green_Max>
-  <Green_Min>107</Green_Min>
-  <Blue_Max>140</Blue_Max>
-  <Blue_Min>51</Blue_Min></Orange>
+  <Red_Max>233</Red_Max>
+  <Red_Min>108</Red_Min>
+  <Green_Max>91</Green_Max>
+  <Green_Min>13</Green_Min>
+  <Blue_Max>71</Blue_Max>
+  <Blue_Min>0</Blue_Min></Orange>
 <Green>
-  <Red_Max>97</Red_Max>
-  <Red_Min>50</Red_Min>
-  <Green_Max>136</Green_Max>
-  <Green_Min>110</Green_Min>
-  <Blue_Max>121</Blue_Max>
-  <Blue_Min>92</Blue_Min></Green>
+  <Red_Max>70</Red_Max>
+  <Red_Min>33</Red_Min>
+  <Green_Max>86</Green_Max>
+  <Green_Min>65</Green_Min>
+  <Blue_Max>56</Blue_Max>
+  <Blue_Min>39</Blue_Min></Green>
 <Red>
-  <Red_Max>196</Red_Max>
-  <Red_Min>110</Red_Min>
-  <Green_Max>90</Green_Max>
-  <Green_Min>40</Green_Min>
-  <Blue_Max>103</Blue_Max>
-  <Blue_Min>22</Blue_Min></Red>
+  <Red_Max>101</Red_Max>
+  <Red_Min>63</Red_Min>
+  <Green_Max>81</Green_Max>
+  <Green_Min>39</Green_Min>
+  <Blue_Max>48</Blue_Max>
+  <Blue_Min>25</Blue_Min></Red>
 <Magenta>
-  <Red_Max>118</Red_Max>
-  <Red_Min>77</Red_Min>
-  <Green_Max>72</Green_Max>
-  <Green_Min>44</Green_Min>
-  <Blue_Max>99</Blue_Max>
-  <Blue_Min>58</Blue_Min></Magenta>
+  <Red_Max>114</Red_Max>
+  <Red_Min>78</Red_Min>
+  <Green_Max>77</Green_Max>
+  <Green_Min>26</Green_Min>
+  <Blue_Max>75</Blue_Max>
+  <Blue_Min>41</Blue_Min></Magenta>
 <Mascara>
   <Format>1</Format>
   <Size>6</Size>
@@ -77,8 +77,8 @@
   <area_boty>0</area_boty>
   <p_area_b>0</p_area_b>
   <p_area_t>0</p_area_t>
-  <max_linha>375</max_linha>
-  <max_coluna>500</max_coluna></Variaveis>
+  <max_linha>378</max_linha>
+  <max_coluna>486</max_coluna></Variaveis>
 <Parametros>
   <Smin>0</Smin>
   <Smax>200</Smax>

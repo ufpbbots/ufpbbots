@@ -99,10 +99,8 @@ comandos Strategy::atacante(Robot rb)
 
         angulo = olhar(rb, bola.x, bola.y);
 
-        W = controle_angular(rb,angulo.fi);
-
+        W = controle_angular(rb,angulo.fi,tx_am);
         V = controle_linear(rb, bola.x, bola.y);
-
         resultado = gera_comandos_vr(rb, V, W);
 
         return(resultado);
@@ -112,53 +110,36 @@ comandos Strategy::goleiro(Robot rb)
 {
 //    comandos resultado;
 //    ang_err angulo;
-
-
-
 //    W = 60;
-
 //    V = 0;
-
 //    resultado = gera_comandos_vr(rb, V, W);
-
 //    return(resultado);
     comandos resultado;
     ang_err angulo;
-
     angulo = olhar(rb, bola.x, bola.y);
-
-    W = controle_angular(rb,angulo.fi);
-
+    //printf("Angulo %f\n", angulo);
+    W = controle_angular(rb,angulo.fi,tx_am);
     V = controle_linear(rb, bola.x, bola.y);
-
     resultado = gera_comandos_vr(rb, V, W);
 
     return(resultado);
+
 }
 
 comandos Strategy::zagueiro(Robot rb)
 {
 //    comandos resultado;
 //    ang_err angulo;
-
 //    W = -60;
-
 //    V = 0;
-
 //    resultado = gera_comandos_vr(rb, V, W);
-
 //    return(resultado);
     comandos resultado;
     ang_err angulo;
-
     angulo = olhar(rb, bola.x, bola.y);
-
-    W = controle_angular(rb,angulo.fi);
-
+    W = controle_angular(rb,angulo.fi,tx_am);
     V = controle_linear(rb, bola.x, bola.y);
-
     resultado = gera_comandos_vr(rb, V, W);
-
     return(resultado);
 }
 
@@ -223,6 +204,11 @@ void Strategy::estrategia1()
 void Strategy::Setar_Campo(Configurations *c)
 {
     campo = c;
+}
+
+void Strategy::Setar_Tempo(double tempo_amostragem)
+{
+    tx_am = tempo_amostragem;
 }
 
 void Strategy::Setar_Variaveis_jogo(Vector<Robot> r, Ball b, Vector<Point> a)

@@ -104,12 +104,13 @@ struct ang_err
      *
      *            2)  fi -> angulo correspondente ao quanto o robô irá
      *                           girar.
+     *            3) tx_am -> taxa de amostragem calculada: 1000*(TempoFinalRotina-TempoInicialRotina)/CLOCKS_PER_SEC
      *
      * Retorno:
      *       double -> valor de velocidade angular entre -1 e 1
      *
      */
-    double controle_angular(Robot rb,double);
+    double controle_angular(Robot rb,double, double);
 	
     double controle_angular_goleiro(double);
 
@@ -133,9 +134,9 @@ struct ang_err
      *         double -> valor de velocidade linear entre -1 e 1
      *
      */
-    double controle_linear(Robot, double, double);
+    double controle_linear(Robot, int, int);
 	
-    double controle_linear_goleiro(Robot, double, double);
+    double controle_linear_goleiro(Robot, int, int);
 
     /*
      * Método:  gera_comandos_vr(Robot, double, double);
@@ -182,7 +183,7 @@ struct ang_err
      *        double-> valor da distância euclidiana entre o robô e o ponto informado.
      *
      */
-    double distancia(Robot, double, double);
+    double distancia(Robot, int, int);
 
 
 #endif /* CONTROLADOR_H_ */

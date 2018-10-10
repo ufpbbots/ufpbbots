@@ -83,6 +83,9 @@ public:
      */
     void Setar_Campo(Configurations *c);
 
+
+    void Setar_Tempo(double tempo_amostragem);
+    double tx_am; //Taxa de amostragem
     /*
      * Método: Setar_Variaveis_jogo
      *
@@ -315,6 +318,8 @@ public:
     int a[3];
     int goalkeeper;
     int g[3];
+
+
 
     double V,W;
 

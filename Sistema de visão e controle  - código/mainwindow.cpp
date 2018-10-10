@@ -29,11 +29,12 @@ MainWindow::MainWindow(QWidget *parent) :
     comando_zagueiro = -1;
 
     cap.open(0);
-    //set = new Configurations(cap,"C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Settings.xml");
-    set = new Configurations(cap,"/Settings.xml");
+    set = new Configurations(cap,"C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Release/release/Settings.xml");
+    //set = new Configurations(cap,"Settings.xml");
+    //set = new Configurations(cap,"\Settings.xml");
 
     roi = set->GetCutFramePoints();
-    set->ReadConfigurationsRobots("C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Constantes.xml");
+    set->ReadConfigurationsRobots("C:/Caboclinhos/Arquivos Caboclinhos//ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Release/release/Constantes.xml");
     //set->ReadConfigurationsRobots("\Constantes.xml");
     con->setar_constantes(set->rb1,set->zonamorta_rb1,set->rb2,set->zonamorta_rb2,set->rb3,set->zonamorta_rb3);
 
@@ -101,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent) :
      cap >> input;
 
      vector<Robot> robos;
-     time = 0;
+     time = 1;
      pos_bola[0] = Point(-1,-1);
      pos_bola[1] = Point(-1,-1);
      contador = 1;
@@ -175,15 +176,15 @@ void MainWindow::Refresh_position_robots()
         #pragma omp section
         {
             binary_img_vermelho = vermelho->Segmentation_Result(&input);
-            centers_id_camisa[0] = vermelho_group->Grouping_Result(binary_img_vermelho);
-
+           // centers_id_camisa[0] = vermelho_group->Grouping_Result(binary_img_vermelho);
+            centers_id_camisa[1] = vermelho_group->Grouping_Result(binary_img_vermelho);
 
         }
         #pragma omp section
         {
             binary_img_verde = verde->Segmentation_Result(&input);
-            centers_id_camisa[1] = verde_group->Grouping_Result(binary_img_verde);
-
+            //centers_id_camisa[1] = verde_group->Grouping_Result(binary_img_verde);
+            centers_id_camisa[0] = verde_group->Grouping_Result(binary_img_verde);
         }
         #pragma omp section
         {
@@ -229,15 +230,22 @@ void MainWindow::Refresh_position_robots()
     robos = Machine_of_Robots->Get_robos();
 
 
-    robos[0].zonamorta_d = con->zona_morta_rb1[0];
-    robos[0].zonamorta_e = con->zona_morta_rb1[1];
+//    robos[0].zonamorta_d = con->zona_morta_rb1[0];
+//    robos[0].zonamorta_e = con->zona_morta_rb1[1];
 
-    robos[1].zonamorta_d = con->zona_morta_rb2[0];
-    robos[1].zonamorta_e = con->zona_morta_rb2[1];
+//    robos[1].zonamorta_d = con->zona_morta_rb2[0];
+//    robos[1].zonamorta_e = con->zona_morta_rb2[1];
 
-    robos[2].zonamorta_d = con->zona_morta_rb3[0];
-    robos[2].zonamorta_e = con->zona_morta_rb3[1];
+//    robos[2].zonamorta_d = con->zona_morta_rb3[0];
+//    robos[2].zonamorta_e = con->zona_morta_rb3[1];
+    robos[0].zonamorta_d = 35;
+    robos[0].zonamorta_e = 35;
 
+    robos[1].zonamorta_d = 35;
+    robos[1].zonamorta_e = 35;
+
+    robos[2].zonamorta_d = 35;
+    robos[2].zonamorta_e = 35;
     robos[0].V_max = con->constantes_rb1[0];
     robos[0].k_lin = con->constantes_rb1[1];
     robos[0].W_max = con->constantes_rb1[2];
@@ -276,7 +284,7 @@ void MainWindow::Refresh_position_robots()
     // ESTRATÉGIA
      pos_bola[0] = pos_bola[1];
      pos_bola[1] = Point(Bola.x,Bola.y);
-
+        //printf("px: %d, py: %d \n", Bola.x, Bola.y);
       Cerebro->Setar_Variaveis_jogo(robos,Bola,adversario);
 
       Cerebro->Setar_Atacante(comando_atacante);
@@ -287,8 +295,6 @@ void MainWindow::Refresh_position_robots()
 
     if(comando == -2)
         parar(robos);
-
-   // estrategia2(robos, Bola);
 
     contador++;
 
@@ -306,28 +312,32 @@ void MainWindow::Refresh_position_robots()
     binary_img_magenta = 0;
     binary_img_laranja = 0;
 
-//    input.release();
-    //Sleep(100);
 /*
     unsigned char str[10];
 
     str[0] = 255;
-    str[1] = 12;
-    str[2] = 100;
-    str[3] = 100;
-    str[4] = 12;
-    str[5] = 100;
-    str[6] = 100;
-    str[7] = 12;
-    str[8] = 100;
-    str[9] = 100;
+    str[1] = 20;
+    str[2] = 200;
+    str[3] = 200;
+    str[4] = 20;
+    str[5] = 200;
+    str[6] = 200;
+    str[7] = 20;
+    str[8] = 200;
+    str[9] = 200;
 
-       envia_comandos_robo(str);*/
-
+    envia_comandos_robo(str);
+*/
     end = clock();
     double aux = 1000*(end-start)/CLOCKS_PER_SEC;
-    QString tempo = QString::number(aux);
+
+    tempo = QString::number(aux);
+    Cerebro->Setar_Tempo(aux);
     ui->milesegundos->setText(tempo);
+    //QString s = QString::number(olhar(rb, Bola.x, Bola.y));
+    //ui->label_5->setText(s);
+    QString s = QString::number(Bola.x);
+    ui->label_5->setText(s);
 
 }
 
@@ -396,17 +406,44 @@ void MainWindow::on_actionComandos_triggered()
 
 void MainWindow::on_pushButton_clicked()
 {
-    if(ui->comboBox->currentIndex() != -1)
-      comando = ui->comboBox->currentIndex();
+    //Adicionei para não precisar selecionar a estrategia no checkbox
+    comando = 0;
+    comando_atacante=0;
+    comando_goleiro=0;
+    comando_zagueiro=0;
+    //copiado do botao conectar para apertar apenas um botao
+    QString sub = ui->ListSerial->currentText();
+    if (flagconexao==true){
+    /////////////////////////////////// comunicação serial ///////////////////////////////
+        int val = inicia_comunicacao_serial(5);
+        if (val == 0) // se a porta não estiver disponível encerre o programa
+            int reta = QMessageBox::warning(this, tr("Erro"), "Erro na porta serial!", QMessageBox::Close);
+     /////////////////////////////////// comunicação serial ///////////////////////////////
+        ui->ConectarSerial->setText("Desconectar");
+    } else {
+        ui->ConectarSerial->setText("Conectar");
+        /////////////////////////////////// comunicação serial ///////////////////////////////
+            encerra_comunicacao_serial();
+        /////////////////////////////////// comunicação serial ///////////////////////////////
 
-    if(ui->combo_atacante->currentIndex() != -1)
-        comando_atacante = ui->combo_atacante->currentIndex();
+    }
+    flagconexao=!flagconexao;
+    //copiado ate aqui lembrar de apagar depois de descomentar o botao Serialconectar
 
-    if(ui->combo_goleiro->currentIndex() != -1)
-        comando_goleiro = ui->combo_goleiro->currentIndex();
 
-    if(ui->combo_zagueiro->currentIndex()!= -1)
-        comando_zagueiro = ui->combo_zagueiro->currentIndex();
+ //   if(ui->comboBox->currentIndex() != -1)
+     // comando = ui->comboBox->currentIndex();
+
+
+
+//    if(ui->combo_atacante->currentIndex() != -1)
+//        comando_atacante = ui->combo_atacante->currentIndex();
+
+//    if(ui->combo_goleiro->currentIndex() != -1)
+//        comando_goleiro = ui->combo_goleiro->currentIndex();
+
+//    if(ui->combo_zagueiro->currentIndex()!= -1)
+//        comando_zagueiro = ui->combo_zagueiro->currentIndex();
 
 }
 
@@ -495,20 +532,21 @@ void MainWindow::paintEvent(QPaintEvent *) {
 
 void MainWindow::on_ConectarSerial_clicked()
 {
-    QString sub = ui->ListSerial->currentText();
-    if (flagconexao==true){
-    /////////////////////////////////// comunicação serial ///////////////////////////////
-         int val = inicia_comunicacao_serial(sub[3].digitValue()-1);
-         if (val == 0) // se a porta não estiver disponível encerre o programa
-             int reta = QMessageBox::warning(this, tr("Erro"), "Erro na porta serial!", QMessageBox::Close);
-     /////////////////////////////////// comunicação serial ///////////////////////////////
-        ui->ConectarSerial->setText("Desconectar");
-    } else {
-        ui->ConectarSerial->setText("Conectar");
-        /////////////////////////////////// comunicação serial ///////////////////////////////
-            encerra_comunicacao_serial();
-        /////////////////////////////////// comunicação serial ///////////////////////////////
+//    QString sub = ui->ListSerial->currentText();
+//    if (flagconexao==true){
+//    /////////////////////////////////// comunicação serial ///////////////////////////////
+//        int val = inicia_comunicacao_serial(5);
+//        //int val = inicia_comunicacao_serial(sub[3].digitValue()-1);
+//         if (val == 0) // se a porta não estiver disponível encerre o programa
+//             int reta = QMessageBox::warning(this, tr("Erro"), "Erro na porta serial!", QMessageBox::Close);
+//     /////////////////////////////////// comunicação serial ///////////////////////////////
+//        ui->ConectarSerial->setText("Desconectar");
+//    } else {
+//        ui->ConectarSerial->setText("Conectar");
+//        /////////////////////////////////// comunicação serial ///////////////////////////////
+//            encerra_comunicacao_serial();
+//        /////////////////////////////////// comunicação serial ///////////////////////////////
 
-    }
-    flagconexao=!flagconexao;
+//    }
+//    flagconexao=!flagconexao;
 }

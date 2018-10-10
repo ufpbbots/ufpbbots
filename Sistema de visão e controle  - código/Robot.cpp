@@ -16,8 +16,8 @@ Robot::Robot()
 Robot::Robot(Point cor_time, Point cor_id)
 {
 	Refresh_Position(cor_time,cor_id);
-	zonamorta_d = 0;
-	zonamorta_e = 0;
+    zonamorta_d = 0;
+    zonamorta_e = 0;
 }
 void Robot::Refresh_Position(Point cor_time, Point cor_id)
 {

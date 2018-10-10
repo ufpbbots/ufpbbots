@@ -1,5 +1,3 @@
-
-
 #include "serialcomm.h"
 
 
@@ -12,14 +10,16 @@ char comports[16][10]={"\\\\.\\COM1",  "\\\\.\\COM2",  "\\\\.\\COM3",  "\\\\.\\C
                        "\\\\.\\COM13", "\\\\.\\COM14", "\\\\.\\COM15", "\\\\.\\COM16"};
 char mode_str[128];
 
-int  cport_nr = 3, // porta COM5 (idc inicial em 0)
-     bdrate = 9600;       // 9600 baud
+int  cport_nr = 10, // porta COM5 (idc inicial em 0)
+     bdrate = 38400;       // 9600 baud
 char mode[]={'8','N','1',0}; // palavra de 8 bits, sem paridade e 1 stop bit
 
 
 void encerra_comunicacao_serial()
 {
     unsigned char str = 255; // byte de sincronização/codificação
+    RS232_SendByte(cport_nr, 0x55);
+    RS232_SendByte(cport_nr, 0xAA);
     RS232_SendByte(cport_nr, str);
     for(int i=1;i<10;i++) // manda zero para todas as velocidades
     {
@@ -47,6 +47,8 @@ int inicia_comunicacao_serial(int porta)
 
 void envia_comandos_robo(unsigned char *str)
 {
+    RS232_SendByte(cport_nr, 0x55);
+    RS232_SendByte(cport_nr, 0xAA);
     for(int i=0;i<10;i++)
     {
         RS232_SendByte(cport_nr, str[i]);

@@ -75,11 +75,12 @@ private:
     Ui::MainWindow *ui;
     int classificador; //0-Find Contours...//1- Kameans
     QTimer *cronometro;
+    QString tempo;
     Configurations *set;
     VideoCapture cap;
     Mat input;
     double dist;
-    string filename = "C:/Users/mauricio/Desktop/Arquivos Caboclinhos/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Debug/debug/Settings.xml";
+    string filename = "C:/Caboclinhos/Arquivos Caboclinhos/ufpbbots/build-VisionSystem_ULTIMATE_QT-Desktop_Qt_5_5_1_MinGW_32bit-Release/release/Settings.xml";
 
     vector<Point>azul_pt;       // Vetor de coordenadas(x,y) da posição do centro de cada um dos corpos azuis.
     vector<Point>vermelho_pt;   // Vetor de coordenadas(x,y) da posição do centro de cada um dos corpos vermelhos.
@@ -155,6 +156,22 @@ private slots:
 
     /*
      * Metodo: MauMau
+     *
+    */
+    /*
+     * Método: on_ListSerial_clicked();
+     *
+     * Descrição: Método responsável por atualizar a lista de portas seriais.
+     *
+     * Parâmetro:
+     *           Nenhum.
+     * Retorno:
+     *       Nenhum.
+    */
+    //void on_ListSerial_clicked();
+
+    /*
+     * Metodo: MauMau2
      *
     */
     void refreshCOMPort();

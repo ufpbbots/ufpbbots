@@ -65,11 +65,12 @@ public:
     QFrame *line_2;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout_3;
     QSpacerItem *horizontalSpacer;
-    QLabel *Tempo;
-    QLabel *milesegundos;
+    QLabel *label_5;
     QLabel *Tempoms;
+    QLabel *milesegundos;
+    QLabel *Tempo;
     QMenuBar *menuBar;
     QMenu *menu_Classificadores;
     QMenu *menuTime;
@@ -103,12 +104,12 @@ public:
         select_azul = new QAction(MainWindow);
         select_azul->setObjectName(QStringLiteral("select_azul"));
         select_azul->setCheckable(true);
-        select_azul->setChecked(true);
+        select_azul->setChecked(false);
         select_azul->setAutoRepeat(true);
         select_amarelo = new QAction(MainWindow);
         select_amarelo->setObjectName(QStringLiteral("select_amarelo"));
         select_amarelo->setCheckable(true);
-        select_amarelo->setChecked(false);
+        select_amarelo->setChecked(true);
         actionAbrir_Settings = new QAction(MainWindow);
         actionAbrir_Settings->setObjectName(QStringLiteral("actionAbrir_Settings"));
         centralWidget = new QWidget(MainWindow);
@@ -232,23 +233,27 @@ public:
 
         verticalLayout->addWidget(groupBox);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         horizontalSpacer = new QSpacerItem(280, 20, QSizePolicy::Maximum, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer);
+        verticalLayout_3->addItem(horizontalSpacer);
 
-        Tempo = new QLabel(centralWidget);
-        Tempo->setObjectName(QStringLiteral("Tempo"));
+        label_5 = new QLabel(centralWidget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        verticalLayout_3->addWidget(label_5);
+
+        Tempoms = new QLabel(centralWidget);
+        Tempoms->setObjectName(QStringLiteral("Tempoms"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(Tempo->sizePolicy().hasHeightForWidth());
-        Tempo->setSizePolicy(sizePolicy2);
-        Tempo->setMaximumSize(QSize(40, 16777215));
+        sizePolicy2.setHeightForWidth(Tempoms->sizePolicy().hasHeightForWidth());
+        Tempoms->setSizePolicy(sizePolicy2);
 
-        horizontalLayout->addWidget(Tempo);
+        verticalLayout_3->addWidget(Tempoms);
 
         milesegundos = new QLabel(centralWidget);
         milesegundos->setObjectName(QStringLiteral("milesegundos"));
@@ -256,17 +261,18 @@ public:
         milesegundos->setSizePolicy(sizePolicy2);
         milesegundos->setMaximumSize(QSize(45, 16777215));
 
-        horizontalLayout->addWidget(milesegundos);
+        verticalLayout_3->addWidget(milesegundos);
 
-        Tempoms = new QLabel(centralWidget);
-        Tempoms->setObjectName(QStringLiteral("Tempoms"));
-        sizePolicy2.setHeightForWidth(Tempoms->sizePolicy().hasHeightForWidth());
-        Tempoms->setSizePolicy(sizePolicy2);
+        Tempo = new QLabel(centralWidget);
+        Tempo->setObjectName(QStringLiteral("Tempo"));
+        sizePolicy2.setHeightForWidth(Tempo->sizePolicy().hasHeightForWidth());
+        Tempo->setSizePolicy(sizePolicy2);
+        Tempo->setMaximumSize(QSize(40, 16777215));
 
-        horizontalLayout->addWidget(Tempoms);
+        verticalLayout_3->addWidget(Tempo);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout->addLayout(verticalLayout_3);
 
 
         horizontalLayout_2->addLayout(verticalLayout);
@@ -274,7 +280,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1042, 26));
+        menuBar->setGeometry(QRect(0, 0, 1042, 21));
         menu_Classificadores = new QMenu(menuBar);
         menu_Classificadores->setObjectName(QStringLiteral("menu_Classificadores"));
         menuTime = new QMenu(menuBar);
@@ -320,9 +326,10 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Goleiro", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Start", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "Stop", 0));
-        Tempo->setText(QApplication::translate("MainWindow", "Tempo:", 0));
-        milesegundos->setText(QString());
+        label_5->setText(QApplication::translate("MainWindow", "TextLabel", 0));
         Tempoms->setText(QApplication::translate("MainWindow", "ms", 0));
+        milesegundos->setText(QString());
+        Tempo->setText(QApplication::translate("MainWindow", "Tempo:", 0));
         menu_Classificadores->setTitle(QApplication::translate("MainWindow", "&Opcoes", 0));
         menuTime->setTitle(QApplication::translate("MainWindow", "&Time", 0));
     } // retranslateUi
