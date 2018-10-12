@@ -94,16 +94,16 @@ void parar(vector<Robot> robos)
 
 comandos Strategy::atacante(Robot rb)
 {
-        comandos resultado;
-        ang_err angulo;
+//        comandos resultado;
+//        ang_err angulo;
 
-        angulo = olhar(rb, bola.x, bola.y);
+//        angulo = olhar(rb, bola.x, bola.y);
 
-        W = controle_angular(rb,angulo.fi,tx_am);
-        V = controle_linear(rb, bola.x, bola.y);
-        resultado = gera_comandos_vr(rb, V, W);
+//        W = controle_angular(rb,angulo.fi,tx_am);
+//        V = controle_linear(rb, bola.x, bola.y);
+//        resultado = gera_comandos_vr(rb, V, W);
 
-        return(resultado);
+//        return(resultado);
 }
 
 comandos Strategy::goleiro(Robot rb)
@@ -117,11 +117,16 @@ comandos Strategy::goleiro(Robot rb)
     comandos resultado;
     ang_err angulo;
     angulo = olhar(rb, bola.x, bola.y);
-    //printf("Angulo %f\n", angulo);
+    //printf("Angulo %f\n", angulo.fi);
     W = controle_angular(rb,angulo.fi,tx_am);
     V = controle_linear(rb, bola.x, bola.y);
+    if (W!=0)
+    {
+        V=0;
+    }
     resultado = gera_comandos_vr(rb, V, W);
 
+    //printf("W : %f fi: %f\n",W,angulo.fi);
     return(resultado);
 
 }
@@ -134,13 +139,13 @@ comandos Strategy::zagueiro(Robot rb)
 //    V = 0;
 //    resultado = gera_comandos_vr(rb, V, W);
 //    return(resultado);
-    comandos resultado;
-    ang_err angulo;
-    angulo = olhar(rb, bola.x, bola.y);
-    W = controle_angular(rb,angulo.fi,tx_am);
-    V = controle_linear(rb, bola.x, bola.y);
-    resultado = gera_comandos_vr(rb, V, W);
-    return(resultado);
+//    comandos resultado;
+//    ang_err angulo;
+//    angulo = olhar(rb, bola.x, bola.y);
+//    W = controle_angular(rb,angulo.fi,tx_am);
+//    V = controle_linear(rb, bola.x, bola.y);
+//    resultado = gera_comandos_vr(rb, V, W);
+//    return(resultado);
 }
 
 void Strategy::estrategia1()

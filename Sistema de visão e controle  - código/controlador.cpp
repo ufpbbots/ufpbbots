@@ -27,16 +27,16 @@ ang_err olhar(Robot rb, double px, double py)   // função testada - ok!
       if (angulo.fi < -180) {angulo.fi = angulo.fi + 360;} // limita entre -180 e 180
 
       //Teste de controle usando apenas um dos lados como frente
-      if (angulo.fi > 90 && angulo.flag == 1) // se for mais fácil, olhar com o fundo...
-      {
-          angulo.fi = angulo.fi - 180;
-          angulo.flag = -1;
-      }
-      if (angulo.fi < -90 && angulo.flag == 1) // se for mais fácil, olhar com o fundo...
-      {
-          angulo.fi = 180 + angulo.fi;
-          angulo.flag = -1;
-      }
+//      if (angulo.fi > 90 && angulo.flag == 1) // se for mais fácil, olhar com o fundo...
+//      {
+//          angulo.fi = angulo.fi - 180;
+//          angulo.flag = -1;
+//      }
+//      if (angulo.fi < -90 && angulo.flag == 1) // se for mais fácil, olhar com o fundo...
+//      {
+//          angulo.fi = 180 + angulo.fi;
+//          angulo.flag = -1;
+//      }
       // angulo.fi é o ângulo a ser corrigido na convenção do sistema de visão. valores entre -90 e 90.
       // angulo.flag serve para selecionar a face que fica mais proxima do objetivo
 
@@ -45,27 +45,45 @@ ang_err olhar(Robot rb, double px, double py)   // função testada - ok!
 
 double controle_angular(Robot rb, double fi, double Ta) // função testada. lembrete : (sinal de w) = -(sinal de fi)
 {
-    double W_max = -1,
-            //W_max = rb.W_max,    // constante limitante da tangente hiperbólica : deve ser negativa
-           //k_ang = rb.k_ang,  // constante de contração da tangente hiperbólica
-           kp=0.08, //Ganho proporcional para o controlador (valor com resultados satisfatorios para 1 frente = 0.05)
- //           W=0,
-           ki=0.005; //Ganho Integral para o controlador (valor com resultados satisfatorios para 1 frente = 0.01)
-          // Ta = 0.02; //Tempo de amostragem do sistema, por enquanto esta fixo, 20ms
+//-------------------------------------------------------
+       //    double W_max = -1,
+// //            W_max = rb.W_max,    // constante limitante da tangente hiperbólica : deve ser negativa
+// //           k_ang = rb.k_ang,  // constante de contração da tangente hiperbólica
+//           kp=0.08, //Ganho proporcional para o controlador (valor com resultados satisfatorios para 1 frente = 0.05)
+// //           W=0,
+//           ki=0.00, //Ganho Integral para o controlador (valor com resultados satisfatorios para 1 frente = 0.01)
+//           kd = 0.0;
+//          // Ta = 0.02; //Tempo de amostragem do sistema, por enquanto esta fixo, 20ms
 
+//    fi = fi/90; // coloca o erro entre -1 e 1
+//    double sumfi;
+//    sumfi = sumfi + fi;
+//    //W = W_max*tanh(k_ang*fi); // não linear
+//    //Lei de controle: Ref[Relatório de estagio] => u(i)=u(i-1)+kp[(1+T/Ti)(e(i)-e(i-1))]
+//     //W = W_max*tanh(W+(kp+ki*Ta)*(fi-fi0));
+//    W = kp*(fi + Ta*ki*sumfi + (kd/Ta)*(fi-fi0));
+//    //W = W_max*tanh(kp*fi); //Os teste iniciais foram realizados com esta lei de controle
 
-    fi = fi/90; // coloca o erro entre -1 e 1
+//    W0=W; //Armazena valor angular anterior
+//    fi0=fi; //Armazena angulo anterior para o controle
+//    //W = limita_velocidade(W,0.2); //satura em -1 a 1
+//-------------------------------------------------------
+//    Controlador Digital on/off
+    double kp = 0.04, acel = 0.1; //Melhores resultados usando o controlador on/off kp=0.04
+    if(fi>15){
+        W=-kp;
+        //W = -kp*(1-acel*fi/180);
+    }
+    else if (fi>-15){
+        //W=kp;
+        W = 0;
+    }
+    else{
+        W=kp;
+        //W = kp*(1+acel*fi/180);
+    }
 
-    //W = W_max*tanh(k_ang*fi); // não linear
-    //Lei de controle: Ref[Relatório de estagio] => u(i)=u(i-1)+kp[(1+T/Ti)(e(i)-e(i-1))]
-      W = W_max*tanh(W+(kp+ki*Ta)*(fi-fi0));
-      //printf("W : %f \n",W);
-    //W = W_max*tanh(kp*fi); //Os teste iniciais foram realizados com esta lei de controle
-
-    W0=W; //Armazena valor angular anterior
-    fi0=fi; //Armazena angulo anterior para o controle
-    //W = limita_velocidade(W,0.2); //satura em -1 a 1
-
+//printf("angulo fi: %f\n",fi);
     return(W); //deve retornar um valor entre -1 e 1
 }
 
@@ -88,19 +106,21 @@ double controle_angular_goleiro(double fi) // função testada. lembrete : (sina
 double controle_linear(Robot rb, int px, int py)
 {
     double  V = 0,
-            k_lin = rb.k_lin,   //constante de contração da tangente hiperbólica
-            V_max = rb.V_max,       //constante limitante da tangente hiperbólica
+//            k_lin = rb.k_lin,   //constante de contração da tangente hiperbólica
+//            V_max = rb.V_max,       //constante limitante da tangente hiperbólica
+            k_lin = 0.002,
+            V_max = 0.3,
             v_min = 0.03,  	 //módulo da velocidade linear mínima permitida
             ang_grande = 30, //para ângulos maiores que esse valor o sistema da prioridade ao W, reduzindo o V
             dist = distancia(rb, px, py);
 
 
-    ang_err angulo = olhar(rb, px, py);
+    //ang_err angulo = olhar(rb, px, py);
 
-    V = V_max*tanh(k_lin*dist*angulo.flag);  //controle não linear de V
-
-
+    V = V_max*tanh(k_lin*(dist-12));  //controle não linear de V
     //V = V*cos(angulo.fi*M_PI/180);  // controle de prioridade reduzindo V quando "ang_err" for grande
+
+//printf("Dist: %f Vel: %f\n",dist,V);
 
     return(V);
 }
@@ -125,7 +145,7 @@ comandos gera_comandos_vr(Robot rb, double V, double W)
 {
     V=0; //teste zerando velocidade linear
     double vre_, vrd_;
-    double zona_morta=50;
+    int zona_morta=30;
     comandos final;
     int VR_max = 254;
     rb.prop_roda_d = 1;
@@ -135,6 +155,9 @@ comandos gera_comandos_vr(Robot rb, double V, double W)
 //    vre_ = rb.prop_roda_e*(V - W)*(VR_max - rb.zonamorta_e);
     vrd_ = rb.prop_roda_d*(V + W)*(VR_max - zona_morta);
     vre_ = rb.prop_roda_e*(V - W)*(VR_max - zona_morta);
+//        vrd_ = W*(VR_max - zona_morta);
+//        vre_ = -W*(VR_max - zona_morta);
+
 
     if (vrd_ >= 0)
     {

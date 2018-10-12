@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     cronometro->start(25);
     con = new Constantes_robot();
 
-
     con->hide();
 
     comando = -2;
@@ -230,22 +229,24 @@ void MainWindow::Refresh_position_robots()
     robos = Machine_of_Robots->Get_robos();
 
 
-//    robos[0].zonamorta_d = con->zona_morta_rb1[0];
-//    robos[0].zonamorta_e = con->zona_morta_rb1[1];
+    robos[0].zonamorta_d = con->zona_morta_rb1[0];
+    robos[0].zonamorta_e = con->zona_morta_rb1[1];
 
-//    robos[1].zonamorta_d = con->zona_morta_rb2[0];
-//    robos[1].zonamorta_e = con->zona_morta_rb2[1];
+    robos[1].zonamorta_d = con->zona_morta_rb2[0];
+    robos[1].zonamorta_e = con->zona_morta_rb2[1];
 
-//    robos[2].zonamorta_d = con->zona_morta_rb3[0];
-//    robos[2].zonamorta_e = con->zona_morta_rb3[1];
-    robos[0].zonamorta_d = 35;
-    robos[0].zonamorta_e = 35;
+    robos[2].zonamorta_d = con->zona_morta_rb3[0];
+    robos[2].zonamorta_e = con->zona_morta_rb3[1];
 
-    robos[1].zonamorta_d = 35;
-    robos[1].zonamorta_e = 35;
+//    robos[0].zonamorta_d = 35;
+//    robos[0].zonamorta_e = 35;
 
-    robos[2].zonamorta_d = 35;
-    robos[2].zonamorta_e = 35;
+//    robos[1].zonamorta_d = 35;
+//    robos[1].zonamorta_e = 35;
+
+//    robos[2].zonamorta_d = 35;
+//    robos[2].zonamorta_e = 35;
+
     robos[0].V_max = con->constantes_rb1[0];
     robos[0].k_lin = con->constantes_rb1[1];
     robos[0].W_max = con->constantes_rb1[2];
@@ -273,12 +274,6 @@ void MainWindow::Refresh_position_robots()
     cvtColor(input, input, CV_BGR2RGB,3);
 
     image = QImage((uchar*) input.data, input.cols, input.rows,input.step, QImage::Format_RGB888);
-    if(image.width() > 0 && image.height() > 0)
-    {
-//        ui->janela->setFixedWidth(image.width());
-//        ui->janela->setFixedHeight(image.height());
-    }
-//    ui->janela->setPixmap(QPixmap::fromImage(image));
     repaint();
 
     // ESTRATÉGIA
