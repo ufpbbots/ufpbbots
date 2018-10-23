@@ -101,24 +101,24 @@ int fis_gIMFCount[] = { 3, 3 };
 int fis_gOMFCount[] = { 3, 3 };
 
 // Coefficients for the Input Member Functions
-FIS_TYPE fis_gMFI0Coeff1[] = { -1440, -800, -80 };
-FIS_TYPE fis_gMFI0Coeff2[] = { -200, 0, 200 };
-FIS_TYPE fis_gMFI0Coeff3[] = { 80, 800, 1440 };
+FIS_TYPE fis_gMFI0Coeff1[] = { -1440, -500, -20 };
+FIS_TYPE fis_gMFI0Coeff2[] = { -30, 0, 30 };
+FIS_TYPE fis_gMFI0Coeff3[] = { 20, 500, 1440 };
 FIS_TYPE* fis_gMFI0Coeff[] = { fis_gMFI0Coeff1, fis_gMFI0Coeff2, fis_gMFI0Coeff3 };
-FIS_TYPE fis_gMFI1Coeff1[] = { -324, -180, -15 };
-FIS_TYPE fis_gMFI1Coeff2[] = { -25, 0, 25 };
-FIS_TYPE fis_gMFI1Coeff3[] = { 15, 180, 324 };
+FIS_TYPE fis_gMFI1Coeff1[] = { -324, -180, -10 };
+FIS_TYPE fis_gMFI1Coeff2[] = { -15, 0, 15 };
+FIS_TYPE fis_gMFI1Coeff3[] = { 10, 180, 324 };
 FIS_TYPE* fis_gMFI1Coeff[] = { fis_gMFI1Coeff1, fis_gMFI1Coeff2, fis_gMFI1Coeff3 };
 FIS_TYPE** fis_gMFICoeff[] = { fis_gMFI0Coeff, fis_gMFI1Coeff };
 
 // Coefficients for the Output Member Functions
-FIS_TYPE fis_gMFO0Coeff1[] = { -1.8, -1, -0.1 };
-FIS_TYPE fis_gMFO0Coeff2[] = { -0.2, 0, 0.2 };
-FIS_TYPE fis_gMFO0Coeff3[] = { 0.1, 1, 1.8 };
+FIS_TYPE fis_gMFO0Coeff1[] = { -1.8, -1, -0.2 };
+FIS_TYPE fis_gMFO0Coeff2[] = { -0.8, 0, 0.8 };
+FIS_TYPE fis_gMFO0Coeff3[] = { 0.2, 1, 1.8 };
 FIS_TYPE* fis_gMFO0Coeff[] = { fis_gMFO0Coeff1, fis_gMFO0Coeff2, fis_gMFO0Coeff3 };
-FIS_TYPE fis_gMFO1Coeff1[] = { -1.8, -1, -0.1 };
-FIS_TYPE fis_gMFO1Coeff2[] = { -0.2, 0, 0.2 };
-FIS_TYPE fis_gMFO1Coeff3[] = { 0.1, 1, 1.8 };
+FIS_TYPE fis_gMFO1Coeff1[] = { -1.8, -1, -0.2 };
+FIS_TYPE fis_gMFO1Coeff2[] = { -0.8, 0, 0.8 };
+FIS_TYPE fis_gMFO1Coeff3[] = { 0.2, 1, 1.8 };
 FIS_TYPE* fis_gMFO1Coeff[] = { fis_gMFO1Coeff1, fis_gMFO1Coeff2, fis_gMFO1Coeff3 };
 FIS_TYPE** fis_gMFOCoeff[] = { fis_gMFO0Coeff, fis_gMFO1Coeff };
 
@@ -163,10 +163,10 @@ int fis_gRO8[] = { 1, 1 };
 int* fis_gRO[] = { fis_gRO0, fis_gRO1, fis_gRO2, fis_gRO3, fis_gRO4, fis_gRO5, fis_gRO6, fis_gRO7, fis_gRO8 };
 
 // Input range Min
-FIS_TYPE fis_gIMin[] = { -800, -180 };
+FIS_TYPE fis_gIMin[] = { -500, -180 };
 
 // Input range Max
-FIS_TYPE fis_gIMax[] = { 800, 180 };
+FIS_TYPE fis_gIMax[] = { 500, 180 };
 
 // Output range Min
 FIS_TYPE fis_gOMin[] = { -1, -1 };

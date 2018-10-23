@@ -163,11 +163,11 @@ comandos gera_comandos_vr(Robot rb, double V, double W)
 {
     //V=0; //teste zerando velocidade linear
     double vre_, vrd_;
-    int zona_morta=30;
+    int zona_morta=0;
     comandos final;
     int VR_max = 254;
-    rb.prop_roda_d = 0.5;
-    rb.prop_roda_e = 0.5;
+    rb.prop_roda_d = 1;
+    rb.prop_roda_e = 1;
 //    printf("::: V: %f -- W: %f :::: Proporcao: %f \n", V, W, rb.prop_roda_d);
 //    vrd_ =rb.prop_roda_d*(V + W)*(VR_max - rb.zonamorta_d);
 //    vre_ = rb.prop_roda_e*(V - W)*(VR_max - rb.zonamorta_e);
@@ -200,7 +200,7 @@ comandos gera_comandos_vr(Robot rb, double V, double W)
     }
     vre_ = limita_velocidade(vre_, 254);  // limita velocidade da roda esquerda
 
-    //printf("Vrd_: %f -- Vre_: %f\n", vrd_, vre_);
+
 
     final.vrD = rint(abs(vrd_));
     final.vrE = rint(abs(vre_));

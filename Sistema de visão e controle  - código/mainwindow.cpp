@@ -331,8 +331,8 @@ void MainWindow::Refresh_position_robots()
     ui->milesegundos->setText(tempo);
     //QString s = QString::number(olhar(rb, Bola.x, Bola.y));
     //ui->label_5->setText(s);
-    QString s = QString::number(Bola.x);
-    ui->label_5->setText(s);
+  //  QString s = QString::number(Bola.x);
+ //   ui->label_5->setText(s);
 
 }
 

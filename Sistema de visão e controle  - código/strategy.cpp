@@ -133,8 +133,9 @@ comandos Strategy::goleiro(Robot rb)
 //        V=0;
 //    }
 //    resultado = gera_comandos_vr(rb, V, W);
+
     resultado = gera_comandos_vr(rb, vel.V, vel.W);
-//    printf("%f,%f\n",W,angulo.fi);
+   // printf("%f,%f\n", vel.V,vel.W);
     return(resultado);
 
 }
@@ -205,11 +206,15 @@ void Strategy::estrategia1()
    str[g[1]] = resultado.vrD; // velocidade da roda direita (magnitude)
    str[g[2]] = resultado.vrE; // velocidade da roda esquerda (magnitude)
 
+   printf("Vrd_Final de novo: %d -- Vre_Final: %d\n", resultado.vrD,resultado.vrE);
+
    resultado = (this->*Atacante)(robos[ataque]); // robo 1
 
    str[a[0]] = resultado.logica; //lógica
    str[a[1]] = resultado.vrD; // velocidade da roda direita (magnitude)
    str[a[2]] = resultado.vrE; // velocidade da roda esquerda (magnitude)
+
+
 
     envia_comandos_robo(str);
 }
