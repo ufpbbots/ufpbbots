@@ -11,6 +11,7 @@ INPUT(
 ./release\serialcomm.o
 ./release\constantes_robot.o
 ./release\strategy.o
+./release\controlador_fuzzy.o
 ./release\qrc_recurso.o
 ./release\moc_mainwindow.o
 ./release\moc_constantes_robot.o

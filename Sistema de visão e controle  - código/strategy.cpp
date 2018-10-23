@@ -116,17 +116,25 @@ comandos Strategy::goleiro(Robot rb)
 //    return(resultado);
     comandos resultado;
     ang_err angulo;
-    angulo = olhar(rb, bola.x, bola.y);
-    //printf("Angulo %f\n", angulo.fi);
-    W = controle_angular(rb,angulo.fi,tx_am);
-    V = controle_linear(rb, bola.x, bola.y);
-    if (W!=0)
-    {
-        V=0;
-    }
-    resultado = gera_comandos_vr(rb, V, W);
+    velocidade vel;
 
-    //printf("W : %f fi: %f\n",W,angulo.fi);
+
+
+    double dist;
+    angulo = olhar(rb, bola.x, bola.y);
+    dist = distancia(rb, bola.x, bola.y);
+    vel =  controle_fuzzy(dist,angulo.fi);
+
+    //printf("Angulo %f\n", angulo.fi);
+//    W = controle_angular(rb, angulo.fi, tx_am);
+//    V = controle_linear(rb, bola.x, bola.y);
+//    if (W!=0)
+//    {
+//        V=0;
+//    }
+//    resultado = gera_comandos_vr(rb, V, W);
+    resultado = gera_comandos_vr(rb, vel.V, vel.W);
+//    printf("%f,%f\n",W,angulo.fi);
     return(resultado);
 
 }

@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     Grouping.cpp \
     serialcomm.cpp \
     constantes_robot.cpp \
-    strategy.cpp
+    strategy.cpp \
+    controlador_fuzzy.cpp
 
 HEADERS  += mainwindow.h \
     Ball.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     Segmentation.h \
     serialcomm.h \
     constantes_robot.h \
-    strategy.h
+    strategy.h \
+    controlador_fuzzy.h
 
 FORMS    += mainwindow.ui \
     constantes_robot.ui

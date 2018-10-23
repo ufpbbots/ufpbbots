@@ -11,6 +11,7 @@ INPUT(
 ./debug\serialcomm.o
 ./debug\constantes_robot.o
 ./debug\strategy.o
+./debug\controlador_fuzzy.o
 ./debug\qrc_recurso.o
 ./debug\moc_mainwindow.o
 ./debug\moc_constantes_robot.o

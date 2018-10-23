@@ -1,6 +1,7 @@
 #include "controlador.h"
 #include <cmath>
 
+
 double W = 0, W0=0, fi0=0;
 
 double limita_velocidade(double valor, double sat)
@@ -46,7 +47,7 @@ ang_err olhar(Robot rb, double px, double py)   // função testada - ok!
 double controle_angular(Robot rb, double fi, double Ta) // função testada. lembrete : (sinal de w) = -(sinal de fi)
 {
 //-------------------------------------------------------
-       //    double W_max = -1,
+//           double W_max = -1,
 // //            W_max = rb.W_max,    // constante limitante da tangente hiperbólica : deve ser negativa
 // //           k_ang = rb.k_ang,  // constante de contração da tangente hiperbólica
 //           kp=0.08, //Ganho proporcional para o controlador (valor com resultados satisfatorios para 1 frente = 0.05)
@@ -69,28 +70,44 @@ double controle_angular(Robot rb, double fi, double Ta) // função testada. lem
 //    //W = limita_velocidade(W,0.2); //satura em -1 a 1
 //-------------------------------------------------------
 //    Controlador Digital on/off
-    double kp = 0.04, acel = 0.1; //Melhores resultados usando o controlador on/off kp=0.04
+    /*
+    double kp = 0.2, acel = 0.01; //Melhores resultados usando o controlador on/off kp=0.04
     if(fi>15){
         W=-kp;
-        //W = -kp*(1-acel*fi/180);
+//        W = -kp*(1-acel*fi/180);
     }
-    else if (fi>-15){
+    else if (fi<-15){
+//        W = kp*(1+acel*fi/180);
+        W = kp*acel;
+    }
+    else{
+        //W=kp;
+        W = 0;
+    }*/
+
+//    RSM
+    double kp = 0.2, acel = 0.1; //Melhores resultados usando o controlador on/off kp=0.04
+    if(fi>15 && fi<180){
+        if(fi>25) W =-kp*(1+acel*fi/180)/10;
+        else W = -kp*(1+acel*fi/180);
+    }
+    else if (fi<-15 && fi>-180){
+        if(fi>25) W = kp*(1+acel*fi/180)/10;
+        else W = kp*(1+acel*fi/180);
+    }
+    else{
         //W=kp;
         W = 0;
     }
-    else{
-        W=kp;
-        //W = kp*(1+acel*fi/180);
-    }
 
-//printf("angulo fi: %f\n",fi);
+//printf("angulo W: %f\n",W);
     return(W); //deve retornar um valor entre -1 e 1
 }
 
 double controle_angular_goleiro(double fi) // função testada. lembrete : (sinal de w) = -(sinal de fi)
 {
     double W_max = -1,    // constante limitante da tangente hiperbólica : deve ser negativa
-           k_ang = 0.6,  // constante de contração da tangente hiperbólica
+           k_ang = 0.8,  // constante de contração da tangente hiperbólica
 
            W = 0;
 
@@ -109,9 +126,9 @@ double controle_linear(Robot rb, int px, int py)
 //            k_lin = rb.k_lin,   //constante de contração da tangente hiperbólica
 //            V_max = rb.V_max,       //constante limitante da tangente hiperbólica
             k_lin = 0.002,
-            V_max = 0.3,
+            V_max = 0.6,
             v_min = 0.03,  	 //módulo da velocidade linear mínima permitida
-            ang_grande = 30, //para ângulos maiores que esse valor o sistema da prioridade ao W, reduzindo o V
+            ang_grande = 50, //para ângulos maiores que esse valor o sistema da prioridade ao W, reduzindo o V
             dist = distancia(rb, px, py);
 
 
@@ -129,7 +146,7 @@ double controle_linear_goleiro(Robot rb, int px, int py)
 {
     double  V = 0,
             k_lin = rb.k_lin,   //constante de contração da tangente hiperbólica
-            V_max = rb.V_max,       //constante limitante da tangente hiperbólica
+            V_max = rb.V_max,   //constante limitante da tangente hiperbólica
             v_min = 0.03,  	 //módulo da velocidade linear mínima permitida
             ang_grande = 30, //para ângulos maiores que esse valor o sistema da prioridade ao W, reduzindo o V
             dist = distancia(rb, px, py);
@@ -141,16 +158,17 @@ double controle_linear_goleiro(Robot rb, int px, int py)
 }
 
 
+
 comandos gera_comandos_vr(Robot rb, double V, double W)
 {
-    V=0; //teste zerando velocidade linear
+    //V=0; //teste zerando velocidade linear
     double vre_, vrd_;
     int zona_morta=30;
     comandos final;
     int VR_max = 254;
-    rb.prop_roda_d = 1;
-    rb.prop_roda_e = 1;
- //   printf("::: V: %f -- W: %f :::: Proporcao: %f \n", V, W, rb.prop_roda_d);
+    rb.prop_roda_d = 0.5;
+    rb.prop_roda_e = 0.5;
+//    printf("::: V: %f -- W: %f :::: Proporcao: %f \n", V, W, rb.prop_roda_d);
 //    vrd_ =rb.prop_roda_d*(V + W)*(VR_max - rb.zonamorta_d);
 //    vre_ = rb.prop_roda_e*(V - W)*(VR_max - rb.zonamorta_e);
     vrd_ = rb.prop_roda_d*(V + W)*(VR_max - zona_morta);
@@ -161,7 +179,7 @@ comandos gera_comandos_vr(Robot rb, double V, double W)
 
     if (vrd_ >= 0)
     {
-        //vrd_ = vrd_ + rb.zonamorta_d;
+//        vrd_ = vrd_ + rb.zonamorta_d;
         vrd_ = vrd_ + zona_morta;
     }
     else

@@ -30,6 +30,7 @@
 #include "Configurations.h"
 #include <vector>
 #include <string>
+#include "controlador_fuzzy.h"
 using namespace std;
 
 void parar(vector<Robot>);

@@ -47,6 +47,7 @@ struct ang_err
 	int flag;
 };
 
+
     /*
      * Método:limita_velocidade(double, double);
      *
@@ -137,6 +138,7 @@ struct ang_err
     double controle_linear(Robot, int, int);
 	
     double controle_linear_goleiro(Robot, int, int);
+
 
     /*
      * Método:  gera_comandos_vr(Robot, double, double);
