@@ -123,18 +123,32 @@ comandos Strategy::goleiro(Robot rb)
     double dist;
     angulo = olhar(rb, bola.x, bola.y);
     dist = distancia(rb, bola.x, bola.y);
-    vel =  controle_fuzzy(dist,angulo.fi);
-
+ //   vel =  controle_fuzzy(dist,angulo.fi);
+//    W = controle_angular(rb, angulo.fi,tx_am);
     //printf("Angulo %f\n", angulo.fi);
-//    W = controle_angular(rb, angulo.fi, tx_am);
-//    V = controle_linear(rb, bola.x, bola.y);
-//    if (W!=0)
+//    W = controle_angular_goleiro(rb, angulo.fi, bola.x, bola.y);
+    V = controle_linear_goleiro(rb, bola.x, bola.y);
+//    if (W > 0.1 && W < -0.1)
 //    {
 //        V=0;
 //    }
+//    resultado = gera_comandos_vr(rb, vel.V, vel.W);
+
+    if (abs(angulo.fi) > 100) {
+        W = controle_angular_goleiro(rb, angulo.fi, bola.x, bola.y);
+        resultado = gera_comandos_vr(rb, 0, W);
+    } else if (abs(angulo.fi) > 20 && abs(angulo.fi) < 100) {
+        vel =  controle_fuzzy(dist,angulo.fi);
+        resultado = gera_comandos_vr(rb, 0, vel.W);
+    }
+    else resultado = gera_comandos_vr(rb, V, 0);
+
 //    resultado = gera_comandos_vr(rb, V, W);
 
-    resultado = gera_comandos_vr(rb, vel.V, vel.W);
+    //RSM
+//    resultado = gera_comandos_vr(rb, 0.5, 0);
+    //RSM
+
    // printf("%f,%f\n", vel.V,vel.W);
     return(resultado);
 
@@ -206,7 +220,7 @@ void Strategy::estrategia1()
    str[g[1]] = resultado.vrD; // velocidade da roda direita (magnitude)
    str[g[2]] = resultado.vrE; // velocidade da roda esquerda (magnitude)
 
-   printf("Vrd_Final de novo: %d -- Vre_Final: %d\n", resultado.vrD,resultado.vrE);
+//   printf("Vrd: %d -- Vre: %d -- L: %d\n", resultado.vrD,resultado.vrE,resultado.logica);
 
    resultado = (this->*Atacante)(robos[ataque]); // robo 1
 

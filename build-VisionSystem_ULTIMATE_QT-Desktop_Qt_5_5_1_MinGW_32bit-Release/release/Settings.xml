@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <opencv_storage>
 <Camera_Settings>
-  <Brightness>43</Brightness>
-  <Saturation>73</Saturation>
-  <Exposure>-7</Exposure>
-  <Contrast>1</Contrast></Camera_Settings>
+  <Brightness>30</Brightness>
+  <Saturation>0</Saturation>
+  <Exposure>-11</Exposure>
+  <Contrast>0</Contrast></Camera_Settings>
 <Cut_Frame_Points>
   <X>84</X>
   <Y>57</Y>
@@ -18,40 +18,40 @@
   <Blue_Max>77</Blue_Max>
   <Blue_Min>43</Blue_Min></Blue>
 <Yellow>
-  <Red_Max>140</Red_Max>
-  <Red_Min>68</Red_Min>
-  <Green_Max>172</Green_Max>
-  <Green_Min>84</Green_Min>
-  <Blue_Max>64</Blue_Max>
-  <Blue_Min>23</Blue_Min></Yellow>
+  <Red_Max>157</Red_Max>
+  <Red_Min>115</Red_Min>
+  <Green_Max>143</Green_Max>
+  <Green_Min>121</Green_Min>
+  <Blue_Max>74</Blue_Max>
+  <Blue_Min>45</Blue_Min></Yellow>
 <Orange>
-  <Red_Max>233</Red_Max>
-  <Red_Min>108</Red_Min>
-  <Green_Max>91</Green_Max>
-  <Green_Min>13</Green_Min>
-  <Blue_Max>71</Blue_Max>
-  <Blue_Min>0</Blue_Min></Orange>
+  <Red_Max>170</Red_Max>
+  <Red_Min>132</Red_Min>
+  <Green_Max>115</Green_Max>
+  <Green_Min>53</Green_Min>
+  <Blue_Max>52</Blue_Max>
+  <Blue_Min>24</Blue_Min></Orange>
 <Green>
-  <Red_Max>70</Red_Max>
-  <Red_Min>33</Red_Min>
-  <Green_Max>86</Green_Max>
-  <Green_Min>65</Green_Min>
-  <Blue_Max>56</Blue_Max>
-  <Blue_Min>39</Blue_Min></Green>
+  <Red_Max>68</Red_Max>
+  <Red_Min>45</Red_Min>
+  <Green_Max>117</Green_Max>
+  <Green_Min>69</Green_Min>
+  <Blue_Max>60</Blue_Max>
+  <Blue_Min>33</Blue_Min></Green>
 <Red>
-  <Red_Max>101</Red_Max>
-  <Red_Min>63</Red_Min>
+  <Red_Max>130</Red_Max>
+  <Red_Min>93</Red_Min>
   <Green_Max>81</Green_Max>
-  <Green_Min>39</Green_Min>
-  <Blue_Max>48</Blue_Max>
-  <Blue_Min>25</Blue_Min></Red>
+  <Green_Min>51</Green_Min>
+  <Blue_Max>54</Blue_Max>
+  <Blue_Min>28</Blue_Min></Red>
 <Magenta>
-  <Red_Max>114</Red_Max>
-  <Red_Min>78</Red_Min>
-  <Green_Max>77</Green_Max>
-  <Green_Min>26</Green_Min>
+  <Red_Max>134</Red_Max>
+  <Red_Min>100</Red_Min>
+  <Green_Max>81</Green_Max>
+  <Green_Min>58</Green_Min>
   <Blue_Max>75</Blue_Max>
-  <Blue_Min>41</Blue_Min></Magenta>
+  <Blue_Min>49</Blue_Min></Magenta>
 <Mascara>
   <Format>1</Format>
   <Size>6</Size>

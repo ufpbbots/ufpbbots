@@ -113,7 +113,7 @@ struct ang_err
      */
     double controle_angular(Robot rb,double, double);
 	
-    double controle_angular_goleiro(double);
+    double controle_angular_goleiro(Robot rb, double, int, int);
 
     /*
      * Método:  controle_linear(Robot, double, double);
